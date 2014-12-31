@@ -166,7 +166,10 @@ public class ShowcaseView extends RelativeLayout
 
     private void updateBitmap() {
         if (bitmapBuffer == null || haveBoundsChanged()) {
-            bitmapBuffer = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+            // Arguments to createbitmap that are less or equal to zero cause app crashes!
+            if (getMeasuredWidth() > 0 & getMeasuredHeight() > 0) {
+                bitmapBuffer = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+            }
         }
     }
 
